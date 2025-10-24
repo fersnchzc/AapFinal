@@ -10,7 +10,7 @@ class PostApiServiceImpl(
 ) : PostApiService {
 
     private companion object {
-        const val BASE_URL = "https://api.tu-servidor.com/v1" // Reemplaza esto con la URL de tu API
+        const val BASE_URL = "https://jsonplaceholder.typicode.com"
         const val POSTS_URL = "$BASE_URL/posts"
     }
     override suspend fun getAllPosts(): List<PostDto> {
