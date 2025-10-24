@@ -12,7 +12,7 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.aapfinal"
+        applicationId = "com.example.appfinal"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -63,6 +63,13 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
+
+    // Dependencias para Tests Unitarios Locales (se ejecutan en tu PC)
+    testImplementation("junit:junit:4.13.2") // El framework base de testing para Java/Kotlin
+    testImplementation("io.mockk:mockk:1.13.11") // La mejor librería para crear "mocks" (dobles de prueba) en Kotlin
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.0") // Utilidades para testear corrutinas
+
+
     ksp(libs.androidx.room.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -71,4 +78,12 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+
+
+    // Dependencias para Tests de Instrumentación (se ejecutan en un emulador/dispositivo)
+    // Aunque no las usemos ahora, es bueno tenerlas
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation(platform("androidx.compose:compose-bom:2024.06.00"))
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
 }

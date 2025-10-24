@@ -14,7 +14,11 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.appfinal.ui.theme.AapFinalTheme
 import com.example.appfinal.ui.views.postdetail.PostDetailScreen
+import com.example.appfinal.ui.views.postdetail.PostDetailViewModel
 import com.example.appfinal.ui.views.postlist.PostListScreen
+import org.koin.androidx.compose.koinViewModel
+import org.koin.core.parameter.parametersOf
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,8 +42,13 @@ class MainActivity : ComponentActivity() {
                             route = "postDetail/{postId}",
                             arguments = listOf(navArgument("postId") { type = NavType.IntType })
                         ) { backStackEntry ->
+
                             val postId = backStackEntry.arguments?.getInt("postId") ?: -1
-                            PostDetailScreen(postId = postId)
+                            val viewModel: PostDetailViewModel = koinViewModel(
+                                parameters = { parametersOf(postId) }
+                            )
+
+                            PostDetailScreen(viewModel)
                         }
                     }
                 }
@@ -47,3 +56,4 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+    

@@ -1,21 +1,17 @@
-package com.example.aapfinal
+package com.example.appfinal
 
 import android.app.Application
-import com.example.aapfinal.di.appModule
+import com.example.appfinal.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
-class AppFinalApp : Application() {
+class MainApplication : Application() {
     override fun onCreate() {
         super.onCreate()
+
         startKoin {
-            // Log para depuración
-            android.util.Log.d("KoinInit", "Iniciando Koin...")
-
-            androidContext(this@AppFinalApp)
+            androidContext(this@MainApplication)
             modules(appModule)
-
-            android.util.Log.d("KoinInit", "Koin iniciado con éxito.")
         }
     }
 }
